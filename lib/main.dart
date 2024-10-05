@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals/categories.dart';
+//import 'package:meals/screens/categories.dart';
+import 'package:meals/screens/meals.dart';
+import 'package:meals/data/dummy_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +22,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: const CategoriesScreen(),
+      home: const MealsScreen(
+        title: 'category',
+        meals: availableMeals,
+      ),
     );
   }
 }
