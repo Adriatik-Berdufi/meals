@@ -36,20 +36,32 @@ class MealDetailsScreen extends ConsumerWidget {
                 ),
               );
             },
-            icon: Icon(
-              isFavorite ? Icons.star : Icons.star_border,
-              color: Colors.yellowAccent,
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 50),
+              transitionBuilder: (child, animation) => RotationTransition(
+                /* turns: animation, */
+                turns: Tween(begin: 0.3, end: 1.0).animate(animation),
+                child: child,
+              ),
+              child: Icon(
+                key: ValueKey(isFavorite),
+                isFavorite ? Icons.star : Icons.star_border,
+                color: Colors.yellowAccent,
+              ),
             ),
-          ),
+          )
         ],
       ),
       body: ListView(
         children: [
-          Image.network(
-            meal.imageUrl,
-            width: double.infinity,
-            height: 240,
-            fit: BoxFit.cover,
+          Hero(
+            tag: meal.id,
+            child: Image.network(
+              meal.imageUrl,
+              width: double.infinity,
+              height: 240,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(height: 12),
           Text(
