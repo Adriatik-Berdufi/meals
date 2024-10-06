@@ -13,6 +13,10 @@ class MealDetailsScreen extends ConsumerWidget {
   // final void Function(Meal meal) onToggleFavorite;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteMeals = ref.watch(favoritesMealsProvider);
+
+    final isFavorite = favoriteMeals.contains(meal);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
@@ -32,9 +36,9 @@ class MealDetailsScreen extends ConsumerWidget {
                 ),
               );
             },
-            icon: const Icon(
-              Icons.star,
-              color: Color.fromARGB(255, 253, 251, 230),
+            icon: Icon(
+              isFavorite ? Icons.star : Icons.star_border,
+              color: Colors.yellowAccent,
             ),
           ),
         ],
